@@ -1,0 +1,25 @@
+[project]
+name = "le_jeu"
+version = "0.1.0"
+description = "Un jeu de plateforme où le joueur doit éviter les obstacles."
+authors = [
+    { name = "Ophélie Valette", email = "ton-email@example.com" }
+]
+license = { file = "LICENSE" }
+
+# Dépendances nécessaires à l'exécution du projet
+dependencies = [
+    "pygame>=2.0.0"
+]
+
+# Dépendances de développement pour les tests et l'intégration continue
+dev-dependencies = [
+    "pytest>=6.0"
+]
+
+[tool.pytest.ini_options]
+addopts = "--maxfail=5 --disable-warnings"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
