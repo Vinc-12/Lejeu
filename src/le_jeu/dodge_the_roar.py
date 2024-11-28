@@ -1,7 +1,7 @@
 import pygame
-import random
 from pathlib import Path
 from typing import Tuple
+import numpy as np
 
 def init_game() -> Tuple[pygame.Surface, pygame.Surface, pygame.Surface, pygame.Surface]:
     """
@@ -73,13 +73,13 @@ def handle_events() -> bool:
             return False
     return True
 
-def update_player_position(player_y: int, player_vel_y: int, is_jumping: bool, screen_height: int, zebra_height: int) -> Tuple[int, int, bool]:
+def update_player_position(player_y: int, player_vel_y: float | int, is_jumping: bool, screen_height: int, zebra_height: int) -> Tuple[int, float, bool]:
     """
     Met à jour la position verticale du joueur et gère l'état de saut.
     
     Args:
         player_y (int): Position y actuelle du joueur.
-        player_vel_y (int): Vitesse verticale du joueur.
+        player_vel_y (float): Vitesse verticale du joueur.
         is_jumping (bool): Indique si le joueur est en train de sauter.
         screen_height (int): Hauteur de la fenêtre de jeu.
         zebra_height (int): Hauteur de l'image du personnage.
@@ -88,7 +88,7 @@ def update_player_position(player_y: int, player_vel_y: int, is_jumping: bool, s
         Tuple[int, int, bool]: Nouvelle position y, nouvelle vitesse y et état de saut.
     """
     if is_jumping:
-        player_y += player_vel_y
+        player_y += int(np.ceil(player_vel_y))
         player_vel_y += 0.85  # Gravité
         
         if player_y >= screen_height - zebra_height - 100:
@@ -125,7 +125,7 @@ def main() -> None:
     
     player_x = 100
     player_y = screen.get_height() - 80 - 100
-    player_vel_y = 0
+    player_vel_y: float = 0
     is_jumping = False
     
     background_x1 = 0
@@ -155,7 +155,7 @@ def main() -> None:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and not is_jumping:
             is_jumping = True
-            player_vel_y = -16
+            player_vel_y= -16
         
         player_y, player_vel_y, is_jumping = update_player_position(player_y, player_vel_y, is_jumping, screen.get_height(), 80)
         
