@@ -1,7 +1,7 @@
 import pytest
 import pygame
 from unittest.mock import patch, MagicMock
-from le_jeu.dodge_the_roar import init_game, draw_background, draw_objects, handle_events, update_player_position, check_collision
+from le_jeu.dodge_the_roar import init_game, draw_background, draw_objects, handle_events, main, update_player_position, check_collision
 
 @pytest.fixture
 def mock_pygame():
@@ -74,3 +74,24 @@ def test_check_collision_with_collision():
     """Test de la vérification de collision avec collision."""
     assert check_collision(100, 100, 70, 80, 100, 60, 100)
 
+
+def test_main_game_flow(monkeypatch, game_assets):
+    """Test complet du flux principal du jeu."""
+
+    screen, _, zebra_image, lion_image = game_assets
+
+    # Simuler les appels d'événements pendant un tour du jeu
+    def mock_handle_events():
+        return False  # Fermer le jeu immédiatement pour tester le flux
+    
+    # Patch handle_events pour simuler la fermeture immédiate
+    monkeypatch.setattr('le_jeu.dodge_the_roar.handle_events', mock_handle_events)
+    
+    # Patch pygame.event.get() pour simuler l'événement QUIT
+    with patch('pygame.event.get', return_value=[pygame.event.Event(pygame.QUIT)]):
+        # Patch pygame.display.flip pour éviter de mettre à jour l'écran pendant le test
+        with patch('pygame.display.flip'):
+            main()  # Le test vérifiera si l'écran se ferme sans erreur, en sortant du jeu
+
+    # Vérifier que l'écran se ferme (par exemple, en vérifiant la fin du jeu)
+    assert pygame.display.get_surface() is None  # L'écran doit être clos après la fin du jeu
