@@ -36,7 +36,7 @@ The game uses several images (background, zebra, and lion) which should be place
 **3. Run the Game**
 To start the game, simply run the Python script:
 ```bash
-python main.py
+python dodge_the_roar.py
 ```
 The game will open in a 800x500 pixel window. Press the spacebar to make the zebra jump and try to survive as long as possible by avoiding lions.
 
