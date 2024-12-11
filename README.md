@@ -1,4 +1,5 @@
-**dodge the roar**
+# **Dodge the roar**
+
 This project is a game developed using the Pygame library, where the player controls a zebra that must avoid lions appearing on the screen. The goal is to survive as long as possible while accumulating points.
 
 **Description**
