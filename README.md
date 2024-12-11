@@ -1,3 +1,82 @@
+**dodge the roar**
+This project is a game developed using the Pygame library, where the player controls a zebra that must avoid lions appearing on the screen. The goal is to survive as long as possible while accumulating points.
+
+**Description**
+In this game, you play as a zebra who must jump to avoid lions that move across the screen. Each time a lion crosses the screen without hitting you, your score increases. If you collide with a lion, the game ends, and you need to press a key to quit.
+
+**Features**
+* Scrolling Background: The background moves to simulate continuous progression.
+* Zebra Jumping: The zebra can jump by pressing the SPACE key to avoid the lions.
+* Score: The score increases every time a lion is avoided.
+* Collision: If the zebra collides with a lion, the game ends.
+* Prerequisites
+* Before running the game, make sure you have the following installed:
+
+* Python 3.11 (recommended version: >= 3.11
+* Pygame: a Python library for game development.
+**Installing Pygame**
+If you don't have Pygame installed, you can install it via `pip`:
+```bash
+pip install pygame
+```
+**Setup and Running the Game**
+**1. Clone the Project**
+Clone the repository to your local directory:
+```bash
+git clone <repository-url>
+cd <project-folder>
+```
+**2. Place the Images**
+The game uses several images (background, zebra, and lion) which should be placed in a data folder. Make sure the following files are present:
+
+* `data/paysage.png` : The background image.
+* `data/zebre.png` : The zebra image.
+* `data/lion.png` : The lion image.
+**3. Run the Game**
+To start the game, simply run the Python script:
+```bash
+python main.py
+```
+The game will open in a 800x500 pixel window. Press the spacebar to make the zebra jump and try to survive as long as possible by avoiding lions.
+
+**Controls**
+* Spacebar: Make the zebra jump to avoid the lions.
+
+**Code Architecture**
+1. `init_game()`
+Initializes Pygame, the game window, and loads the necessary images for the game.
+
+2. `draw_background()`
+Draws the background and scrolls it based on the defined speed.
+
+3. `draw_objects()`
+Displays the zebra, lions, and the score on the screen.
+
+4. `handle_events()`
+Handles user events, including closing the game window.
+
+5. `update_player_position()`
+Updates the zebra's position, managing gravity during the jump.
+
+6. `check_collision()`
+Checks if the zebra collides with a lion.
+
+7. `main()`
+The main function that runs the game. It handles the game loop, rendering, and user interactions.
+
+
+**Future Development**
+* Add more obstacles: Integrate different types of obstacles to make the game more challenging.
+* Improve graphics: Replace the current images with more sophisticated graphics.
+* Sounds and music: Add sound effects and background music to enhance the experience.
+
+
+
+
+
+
+
+
 # Python base project
 
 1. To setup the environnement, make sure to install miniconda https://docs.anaconda.com/miniconda/miniconda-install/
